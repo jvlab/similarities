@@ -1,0 +1,5 @@
+# To be safe, use spaces, not tabs
+num_stimuli: 37
+overlap: 2 # do not change unless necessary - controls how many stimuli are shared with one other trial with same ref
+num_stimuli_per_trial: 8
+path_to_stimulus_list: '../sample-materials/image-exp-materials/sample_image_stimuli.txt'

@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" ?>
+<PsychoPy2experiment encoding="utf-8" version="2020.2.10">
+  <Settings>
+    <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
+    <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
+    <Param name="Completed URL" updates="None" val="" valType="str"/>
+    <Param name="Data file delimiter" updates="None" val="auto" valType="str"/>
+    <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
+    <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
+    <Param name="Experiment info" updates="None" val="{'participant': '', 'session': '001'}" valType="code"/>
+    <Param name="Force stereo" updates="None" val="True" valType="bool"/>
+    <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
+    <Param name="HTML path" updates="None" val="html" valType="str"/>
+    <Param name="Incomplete URL" updates="None" val="" valType="str"/>
+    <Param name="JS libs" updates="None" val="packaged" valType="str"/>
+    <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
+    <Param name="Resources" updates="None" val="[]" valType="fileList"/>
+    <Param name="Save csv file" updates="None" val="False" valType="bool"/>
+    <Param name="Save excel file" updates="None" val="False" valType="bool"/>
+    <Param name="Save log file" updates="None" val="True" valType="bool"/>
+    <Param name="Save psydat file" updates="None" val="True" valType="bool"/>
+    <Param name="Save wide csv file" updates="None" val="True" valType="bool"/>
+    <Param name="Screen" updates="None" val="1" valType="num"/>
+    <Param name="Show info dlg" updates="None" val="True" valType="bool"/>
+    <Param name="Show mouse" updates="None" val="False" valType="bool"/>
+    <Param name="Units" updates="None" val="height" valType="str"/>
+    <Param name="Use version" updates="None" val="3.2.4" valType="str"/>
+    <Param name="Window size (pixels)" updates="None" val="[1440, 900]" valType="code"/>
+    <Param name="blendMode" updates="None" val="avg" valType="str"/>
+    <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
+    <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
+    <Param name="expName" updates="None" val="image_exp" valType="str"/>
+    <Param name="exportHTML" updates="None" val="on Sync" valType="str"/>
+    <Param name="logging level" updates="None" val="debug" valType="code"/>
+  </Settings>
+  <Routines>
+    <Routine name="trial">
+      <MouseComponent name="mouse">
+        <Param name="clickable" updates="constant" val="" valType="code"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutineOnPress" updates="constant" val="never" valType="str"/>
+        <Param name="name" updates="None" val="mouse" valType="code"/>
+        <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
+        <Param name="saveMouseState" updates="None" val="final" valType="str"/>
+        <Param name="saveParamsClickable" updates="constant" val="name," valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
+        <Param name="timeRelativeTo" updates="constant" val="mouse onset" valType="str"/>
+      </MouseComponent>
+      <CodeComponent name="code">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="thisExpResult = data.ExperimentHandler(name=expName, version='1.0.1',&amp;#10;                                       extraInfo=expInfo, runtimeInfo=None,&amp;#10;                                       dataFileName='{}_responses'.format(filename))" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="# keep track of what/how many letters have been clicked:&amp;#10;clicked_animals = []&amp;#10;clicked_objects = []&amp;#10;clickable_stimuli = []&amp;#10;&amp;#10;for stim in to_draw:&amp;#10;    stim.setOpacity(1)&amp;#10;    stim.setColor([1, 1, 1])&amp;#10;    if stim.name != 'ref':&amp;#10;        clickable_stimuli.append(stim)" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="for stim in to_draw:&amp;#10;    stim.draw()&amp;#10;&amp;#10;# using your actual stimulus names, check each one for a click:&amp;#10;for letter_stim in clickable_stimuli:&amp;#10;    # only respond if a letter has not already been clicked:&amp;#10;    if mouse.isPressedIn(letter_stim) and letter_stim.opacity == 1:&amp;#10;        letter_stim.setOpacity(0.5)&amp;#10;        letter_stim.setColor([0.136, 0.140, 0.141], 'rgb')&amp;#10;        clicked_animals.append(letter_stim.image.split('/')[-1].split('.')[0])&amp;#10;        clicked_objects.append(letter_stim.name)&amp;#10;&amp;#10;if len(set(clicked_objects)) == 8:&amp;#10;    x, y = mouse.getPos()&amp;#10;    mouse.setPos((0, 0))&amp;#10;    continueRoutine = False&amp;#10;&amp;#10;" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="trial = trials.thisTrial&amp;#10;for key in trial:&amp;#10;    thisExpResult.addData(key, trial[key])&amp;#10;thisExpResult.addData('clicks', clicked_objects)&amp;#10;thisExpResult.addData('clicked_stimuli', clicked_animals)&amp;#10;thisExpResult.nextEntry()&amp;#10;number += 1 # next trial" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code" valType="code"/>
+      </CodeComponent>
+      <TextComponent name="page_num">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.5" valType="code"/>
+        <Param name="name" updates="None" val="page_num" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(34, -12)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="set every repeat" val="$number" valType="str"/>
+        <Param name="units" updates="None" val="deg" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="instructions">
+      <TextComponent name="instructions_msg">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.03" valType="code"/>
+        <Param name="name" updates="None" val="instructions_msg" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0.5, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Please click the stimuli in the circle in order of similarity to the stimulus in the center, the reference.&amp;#10;&amp;#10;As you click, the stimuli will gray out.&amp;#10;You cannot undo clicks.&amp;#10;Click the stimulus most similar to the reference first and least similar stimulus last.&amp;#10;&amp;#10;Press spacebar to continue to task" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp">
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="nothing" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <CodeComponent name="code_2">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code_2" valType="code"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="goodbye">
+      <TextComponent name="thank_you">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.03" valType="code"/>
+        <Param name="name" updates="None" val="thank_you" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0.7, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="1.5" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Thank you for your time. :)" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="preload">
+      <TextComponent name="loading_msg">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.03" valType="code"/>
+        <Param name="name" updates="None" val="loading_msg" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0.65, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="time (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="set every frame" val="$status" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <CodeComponent name="code_3">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import glob&amp;#10;import yaml&amp;#10;&amp;#10;status = ''" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="with open('../config.yaml', &quot;r&quot;) as stream:  # Read in directory containing stimulus set of images&amp;#10;    exp_config = yaml.safe_load(stream)&amp;#10;    PATH_TO_STIMULI = exp_config['files']&amp;#10;image_files = glob.glob('{}/*.png'.format(PATH_TO_STIMULI))&amp;#10;if len(image_files) == 0:&amp;#10;    image_files = glob.glob('{}/*.jpeg'.format(PATH_TO_STIMULI))&amp;#10;stimulus_objects = {}&amp;#10;done = False&amp;#10;for image_file in image_files:&amp;#10;    image_name = image_file.split('/')[-1].split('.')[0]&amp;#10;    stimulus_objects[image_name] = visual.ImageStim(win=win,&amp;#10;                                    size=[115, 115],&amp;#10;                                    units='pix',&amp;#10;                                    image=image_file,&amp;#10;                                    opacity=1)&amp;#10;done = True&amp;#10;" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="if done:&amp;#10;    status = 'Loading complete!\nYou may press the spacebar to continue'" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code_3" valType="code"/>
+      </CodeComponent>
+      <KeyboardComponent name="key_resp_2">
+        <Param name="allowedKeys" updates="constant" val="'y','n','left','right','space'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_2" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="hello">
+      <TextComponent name="start_up">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.03" valType="code"/>
+        <Param name="name" updates="None" val="start_up" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0.7, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="0.5" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Please wait while images load…" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="initialize_stimuli">
+      <CodeComponent name="code_4">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="from psychopy.clock import StaticPeriod&amp;#10;&amp;#10;number = 1&amp;#10;r0 = 250.8&amp;#10;r = 177.3&amp;#10;&amp;#10;stim_locations = {&amp;#10;    'stim1': (r0, 0),&amp;#10;    'stim2': (r, r),&amp;#10;    'stim3': (0, r0),&amp;#10;    'stim4': (-r, r),&amp;#10;    'stim5': (-r0, 0),&amp;#10;    'stim6': (-r, -r),&amp;#10;    'stim7': (0, -r0),&amp;#10;    'stim8': (r, -r),&amp;#10;    'ref': (0, 0)&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="import {StaticPeriod} from 'psychopy/clock';&amp;#10;var number, r, r0, stim_locations;&amp;#10;number = 1;&amp;#10;r0 = 250.8;&amp;#10;r = 177.3;&amp;#10;stim_locations = {&quot;stim1&quot;: [r0, 0], &quot;stim2&quot;: [r, r], &quot;stim3&quot;: [0, r0], &quot;stim4&quot;: [(- r), r], &quot;stim5&quot;: [(- r0), 0], &quot;stim6&quot;: [(- r), (- r)], &quot;stim7&quot;: [0, (- r0)], &quot;stim8&quot;: [r, (- r)], &quot;ref&quot;: [0, 0]};&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="ISI = new StaticPeriod({&quot;screenHz&quot;: 60});&amp;#10;trial = trials.thisTrial;&amp;#10;to_draw = [];&amp;#10;ISI.start(0.5);&amp;#10;for (var key, _pj_c = 0, _pj_a = trial, _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    key = _pj_a[_pj_c];&amp;#10;    if ((key !== &quot;number&quot;)) {&amp;#10;        animal = trial[key];&amp;#10;        stimulus_objects[animal].pos = stim_locations[key];&amp;#10;        stimulus_objects[animal].name = key;&amp;#10;        to_draw.append(stimulus_objects[animal]);&amp;#10;    }&amp;#10;}&amp;#10;ISI.complete();&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="ISI = StaticPeriod(screenHz=60)&amp;#10;trial = trials.thisTrial&amp;#10;to_draw = []&amp;#10;&amp;#10;ISI.start(0.5)  # start a period of 0.5s&amp;#10;for key in trial:&amp;#10;    if key != 'number':&amp;#10;        image = trial[key]&amp;#10;        stimulus_objects[image].pos = stim_locations[key]&amp;#10;        stimulus_objects[image].name = key&amp;#10;        to_draw.append(stimulus_objects[image])&amp;#10;ISI.complete()  # finish the 0.5s, taking into account one 60Hz frame&amp;#10;" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Py" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="code_4" valType="code"/>
+      </CodeComponent>
+    </Routine>
+  </Routines>
+  <Flow>
+    <Routine name="hello"/>
+    <Routine name="preload"/>
+    <Routine name="instructions"/>
+    <LoopInitiator loopType="TrialHandler" name="trials">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('number', 1), ('ref', 'ladybug'), ('stim1', 'sheep'), ('stim2', 'pigeon'), ('stim3', 'turkey'), ('stim4', 'snake'), ('stim5', 'cow'), ('stim6', 'rat'), ('stim7', 'snail'), ('stim8', 'monkey')]), OrderedDict([('number', 2), ('ref', 'frog'), ('stim1', 'turtle'), ('stim2', 'pigeon'), ('stim3', 'ant'), ('stim4', 'giraffe'), ('stim5', 'whale'), ('stim6', 'horse'), ('stim7', 'dolphin'), ('stim8', 'duck')]), OrderedDict([('number', 3), ('ref', 'butterfly'), ('stim1', 'monkey'), ('stim2', 'turkey'), ('stim3', 'lizard'), ('stim4', 'shark'), ('stim5', 'bat'), ('stim6', 'whale'), ('stim7', 'crocodile'), ('stim8', 'turtle')]), OrderedDict([('number', 4), ('ref', 'whale'), ('stim1', 'goat'), ('stim2', 'frog'), ('stim3', 'sparrow'), ('stim4', 'tiger'), ('stim5', 'bluebird'), ('stim6', 'crocodile'), ('stim7', 'snake'), ('stim8', 'elephant')]), OrderedDict([('number', 5), ('ref', 'eagle'), ('stim1', 'turkey'), ('stim2', 'cow'), ('stim3', 'sparrow'), ('stim4', 'cat'), ('stim5', 'hog'), ('stim6', 'turtle'), ('stim7', 'snail'), ('stim8', 'frog')]), OrderedDict([('number', 6), ('ref', 'goldfish'), ('stim1', 'tiger'), ('stim2', 'horse'), ('stim3', 'bat'), ('stim4', 'rat'), ('stim5', 'bear'), ('stim6', 'fox'), ('stim7', 'owl'), ('stim8', 'giraffe')]), OrderedDict([('number', 7), ('ref', 'crocodile'), ('stim1', 'rat'), ('stim2', 'ant'), ('stim3', 'snake'), ('stim4', 'giraffe'), ('stim5', 'bluebird'), ('stim6', 'snail'), ('stim7', 'horse'), ('stim8', 'owl')]), OrderedDict([('number', 8), ('ref', 'goldfish'), ('stim1', 'crocodile'), ('stim2', 'bat'), ('stim3', 'sheep'), ('stim4', 'sparrow'), ('stim5', 'snake'), ('stim6', 'snail'), ('stim7', 'horse'), ('stim8', 'bluebird')]), OrderedDict([('number', 9), ('ref', 'spider'), ('stim1', 'whale'), ('stim2', 'butterfly'), ('stim3', 'bear'), ('stim4', 'shark'), ('stim5', 'pigeon'), ('stim6', 'eagle'), ('stim7', 'crocodile'), ('stim8', 'goldfish')]), OrderedDict([('number', 10), ('ref', 'owl'), ('stim1', 'dolphin'), ('stim2', 'frog'), ('stim3', 'butterfly'), ('stim4', 'dog'), ('stim5', 'bear'), ('stim6', 'eagle'), ('stim7', 'monkey'), ('stim8', 'rat')]), OrderedDict([('number', 11), ('ref', 'pigeon'), ('stim1', 'elephant'), ('stim2', 'monkey'), ('stim3', 'goat'), ('stim4', 'bluebird'), ('stim5', 'snake'), ('stim6', 'lizard'), ('stim7', 'bat'), ('stim8', 'hog')]), OrderedDict([('number', 12), ('ref', 'whale'), ('stim1', 'spider'), ('stim2', 'mouse'), ('stim3', 'turkey'), ('stim4', 'dog'), ('stim5', 'owl'), ('stim6', 'hog'), ('stim7', 'shark'), ('stim8', 'turtle')]), OrderedDict([('number', 13), ('ref', 'monkey'), ('stim1', 'goat'), ('stim2', 'bear'), ('stim3', 'ladybug'), ('stim4', 'sparrow'), ('stim5', 'whale'), ('stim6', 'lizard'), ('stim7', 'snail'), ('stim8', 'hog')]), OrderedDict([('number', 14), ('ref', 'shark'), ('stim1', 'dog'), ('stim2', 'monkey'), ('stim3', 'whale'), ('stim4', 'bear'), ('stim5', 'goat'), ('stim6', 'turkey'), ('stim7', 'sparrow'), ('stim8', 'cat')]), OrderedDict([('number', 15), ('ref', 'turkey'), ('stim1', 'turtle'), ('stim2', 'pigeon'), ('stim3', 'bat'), ('stim4', 'giraffe'), ('stim5', 'cat'), ('stim6', 'ant'), ('stim7', 'shark'), ('stim8', 'bluebird')]), OrderedDict([('number', 16), ('ref', 'turkey'), ('stim1', 'elephant'), ('stim2', 'lizard'), ('stim3', 'goldfish'), ('stim4', 'bear'), ('stim5', 'crocodile'), ('stim6', 'fox'), ('stim7', 'hog'), ('stim8', 'cow')]), OrderedDict([('number', 17), ('ref', 'bat'), ('stim1', 'bear'), ('stim2', 'goldfish'), ('stim3', 'rat'), ('stim4', 'dolphin'), ('stim5', 'sparrow'), ('stim6', 'spider'), ('stim7', 'goat'), ('stim8', 'lizard')]), OrderedDict([('number', 18), ('ref', 'dog'), ('stim1', 'snail'), ('stim2', 'shark'), ('stim3', 'horse'), ('stim4', 'sparrow'), ('stim5', 'goldfish'), ('stim6', 'rat'), ('stim7', 'fox'), ('stim8', 'turtle')]), OrderedDict([('number', 19), ('ref', 'bear'), ('stim1', 'elephant'), ('stim2', 'turtle'), ('stim3', 'eagle'), ('stim4', 'crocodile'), ('stim5', 'cow'), ('stim6', 'shark'), ('stim7', 'dog'), ('stim8', 'duck')]), OrderedDict([('number', 20), ('ref', 'mouse'), ('stim1', 'turkey'), ('stim2', 'giraffe'), ('stim3', 'bat'), ('stim4', 'ant'), ('stim5', 'elephant'), ('stim6', 'frog'), ('stim7', 'dog'), ('stim8', 'spider')]), OrderedDict([('number', 21), ('ref', 'mouse'), ('stim1', 'dolphin'), ('stim2', 'monkey'), ('stim3', 'fox'), ('stim4', 'snake'), ('stim5', 'owl'), ('stim6', 'bluebird'), ('stim7', 'sheep'), ('stim8', 'turtle')]), OrderedDict([('number', 22), ('ref', 'butterfly'), ('stim1', 'cat'), ('stim2', 'whale'), ('stim3', 'horse'), ('stim4', 'snake'), ('stim5', 'dolphin'), ('stim6', 'monkey'), ('stim7', 'sparrow'), ('stim8', 'giraffe')]), OrderedDict([('number', 23), ('ref', 'rat'), ('stim1', 'lizard'), ('stim2', 'crocodile'), ('stim3', 'dog'), ('stim4', 'bluebird'), ('stim5', 'tiger'), ('stim6', 'duck'), ('stim7', 'fox'), ('stim8', 'sparrow')]), OrderedDict([('number', 24), ('ref', 'goat'), ('stim1', 'crocodile'), ('stim2', 'bluebird'), ('stim3', 'cat'), ('stim4', 'snake'), ('stim5', 'bear'), ('stim6', 'butterfly'), ('stim7', 'turtle'), ('stim8', 'shark')]), OrderedDict([('number', 25), ('ref', 'duck'), ('stim1', 'dog'), ('stim2', 'cow'), ('stim3', 'spider'), ('stim4', 'crocodile'), ('stim5', 'mouse'), ('stim6', 'giraffe'), ('stim7', 'turtle'), ('stim8', 'shark')]), OrderedDict([('number', 26), ('ref', 'sparrow'), ('stim1', 'monkey'), ('stim2', 'eagle'), ('stim3', 'rat'), ('stim4', 'bluebird'), ('stim5', 'snail'), ('stim6', 'lizard'), ('stim7', 'ant'), ('stim8', 'horse')]), OrderedDict([('number', 27), ('ref', 'crocodile'), ('stim1', 'dog'), ('stim2', 'fox'), ('stim3', 'horse'), ('stim4', 'turtle'), ('stim5', 'hog'), ('stim6', 'snake'), ('stim7', 'spider'), ('stim8', 'shark')]), OrderedDict([('number', 28), ('ref', 'snail'), ('stim1', 'owl'), ('stim2', 'dog'), ('stim3', 'sparrow'), ('stim4', 'turkey'), ('stim5', 'lizard'), ('stim6', 'goldfish'), ('stim7', 'goat'), ('stim8', 'frog')]), OrderedDict([('number', 29), ('ref', 'ladybug'), ('stim1', 'shark'), ('stim2', 'dolphin'), ('stim3', 'hog'), ('stim4', 'duck'), ('stim5', 'mouse'), ('stim6', 'eagle'), ('stim7', 'fox'), ('stim8', 'cat')]), OrderedDict([('number', 30), ('ref', 'turkey'), ('stim1', 'butterfly'), ('stim2', 'goat'), ('stim3', 'lizard'), ('stim4', 'dog'), ('stim5', 'dolphin'), ('stim6', 'owl'), ('stim7', 'sparrow'), ('stim8', 'cow')]), OrderedDict([('number', 31), ('ref', 'cow'), ('stim1', 'crocodile'), ('stim2', 'spider'), ('stim3', 'shark'), ('stim4', 'sheep'), ('stim5', 'snail'), ('stim6', 'duck'), ('stim7', 'goat'), ('stim8', 'whale')]), OrderedDict([('number', 32), ('ref', 'dolphin'), ('stim1', 'crocodile'), ('stim2', 'rat'), ('stim3', 'ladybug'), ('stim4', 'snail'), ('stim5', 'mouse'), ('stim6', 'bat'), ('stim7', 'hog'), ('stim8', 'giraffe')]), OrderedDict([('number', 33), ('ref', 'giraffe'), ('stim1', 'snail'), ('stim2', 'spider'), ('stim3', 'bear'), ('stim4', 'elephant'), ('stim5', 'cow'), ('stim6', 'dog'), ('stim7', 'sheep'), ('stim8', 'hog')]), OrderedDict([('number', 34), ('ref', 'elephant'), ('stim1', 'bat'), ('stim2', 'monkey'), ('stim3', 'bluebird'), ('stim4', 'spider'), ('stim5', 'dog'), ('stim6', 'snake'), ('stim7', 'mouse'), ('stim8', 'giraffe')]), OrderedDict([('number', 35), ('ref', 'snake'), ('stim1', 'ant'), ('stim2', 'turtle'), ('stim3', 'dolphin'), ('stim4', 'ladybug'), ('stim5', 'butterfly'), ('stim6', 'monkey'), ('stim7', 'spider'), ('stim8', 'sparrow')]), OrderedDict([('number', 36), ('ref', 'sheep'), ('stim1', 'fox'), ('stim2', 'lizard'), ('stim3', 'whale'), ('stim4', 'ladybug'), ('stim5', 'pigeon'), ('stim6', 'eagle'), ('stim7', 'giraffe'), ('stim8', 'horse')]), OrderedDict([('number', 37), ('ref', 'duck'), ('stim1', 'fox'), ('stim2', 'monkey'), ('stim3', 'sparrow'), ('stim4', 'dog'), ('stim5', 'ladybug'), ('stim6', 'snake'), ('stim7', 'hog'), ('stim8', 'shark')]), OrderedDict([('number', 38), ('ref', 'ladybug'), ('stim1', 'whale'), ('stim2', 'elephant'), ('stim3', 'tiger'), ('stim4', 'bear'), ('stim5', 'duck'), ('stim6', 'eagle'), ('stim7', 'spider'), ('stim8', 'goat')]), OrderedDict([('number', 39), ('ref', 'turtle'), ('stim1', 'cow'), ('stim2', 'ant'), ('stim3', 'cat'), ('stim4', 'snake'), ('stim5', 'elephant'), ('stim6', 'snail'), ('stim7', 'duck'), ('stim8', 'sparrow')]), OrderedDict([('number', 40), ('ref', 'turtle'), ('stim1', 'bluebird'), ('stim2', 'crocodile'), ('stim3', 'giraffe'), ('stim4', 'elephant'), ('stim5', 'turkey'), ('stim6', 'goat'), ('stim7', 'cow'), ('stim8', 'shark')]), OrderedDict([('number', 41), ('ref', 'elephant'), ('stim1', 'ant'), ('stim2', 'whale'), ('stim3', 'ladybug'), ('stim4', 'turkey'), ('stim5', 'lizard'), ('stim6', 'hog'), ('stim7', 'cat'), ('stim8', 'goat')]), OrderedDict([('number', 42), ('ref', 'goldfish'), ('stim1', 'goat'), ('stim2', 'lizard'), ('stim3', 'giraffe'), ('stim4', 'cow'), ('stim5', 'dog'), ('stim6', 'duck'), ('stim7', 'pigeon'), ('stim8', 'tiger')]), OrderedDict([('number', 43), ('ref', 'horse'), ('stim1', 'duck'), ('stim2', 'spider'), ('stim3', 'butterfly'), ('stim4', 'ant'), ('stim5', 'turkey'), ('stim6', 'sheep'), ('stim7', 'goldfish'), ('stim8', 'hog')]), OrderedDict([('number', 44), ('ref', 'ant'), ('stim1', 'snail'), ('stim2', 'dog'), ('stim3', 'sparrow'), ('stim4', 'cow'), ('stim5', 'cat'), ('stim6', 'hog'), ('stim7', 'whale'), ('stim8', 'monkey')]), OrderedDict([('number', 45), ('ref', 'turtle'), ('stim1', 'bear'), ('stim2', 'sheep'), ('stim3', 'monkey'), ('stim4', 'dog'), ('stim5', 'owl'), ('stim6', 'ladybug'), ('stim7', 'eagle'), ('stim8', 'lizard')]), OrderedDict([('number', 46), ('ref', 'hog'), ('stim1', 'butterfly'), ('stim2', 'monkey'), ('stim3', 'duck'), ('stim4', 'sheep'), ('stim5', 'rat'), ('stim6', 'pigeon'), ('stim7', 'shark'), ('stim8', 'tiger')]), OrderedDict([('number', 47), ('ref', 'butterfly'), ('stim1', 'bear'), ('stim2', 'snail'), ('stim3', 'crocodile'), ('stim4', 'sheep'), ('stim5', 'ant'), ('stim6', 'owl'), ('stim7', 'turkey'), ('stim8', 'tiger')]), OrderedDict([('number', 48), ('ref', 'cat'), ('stim1', 'whale'), ('stim2', 'owl'), ('stim3', 'ladybug'), ('stim4', 'bluebird'), ('stim5', 'lizard'), ('stim6', 'pigeon'), ('stim7', 'bat'), ('stim8', 'rat')]), OrderedDict([('number', 49), ('ref', 'dog'), ('stim1', 'cow'), ('stim2', 'ladybug'), ('stim3', 'giraffe'), ('stim4', 'lizard'), ('stim5', 'owl'), ('stim6', 'tiger'), ('stim7', 'pigeon'), ('stim8', 'monkey')]), OrderedDict([('number', 50), ('ref', 'rat'), ('stim1', 'tiger'), ('stim2', 'frog'), ('stim3', 'ant'), ('stim4', 'mouse'), ('stim5', 'lizard'), ('stim6', 'cow'), ('stim7', 'pigeon'), ('stim8', 'hog')]), OrderedDict([('number', 51), ('ref', 'shark'), ('stim1', 'horse'), ('stim2', 'elephant'), ('stim3', 'snail'), ('stim4', 'frog'), ('stim5', 'eagle'), ('stim6', 'snake'), ('stim7', 'spider'), ('stim8', 'hog')]), OrderedDict([('number', 52), ('ref', 'goat'), ('stim1', 'snail'), ('stim2', 'elephant'), ('stim3', 'bat'), ('stim4', 'giraffe'), ('stim5', 'sheep'), ('stim6', 'sparrow'), ('stim7', 'dolphin'), ('stim8', 'spider')]), OrderedDict([('number', 53), ('ref', 'cow'), ('stim1', 'goldfish'), ('stim2', 'bat'), ('stim3', 'snake'), ('stim4', 'shark'), ('stim5', 'ladybug'), ('stim6', 'duck'), ('stim7', 'frog'), ('stim8', 'pigeon')]), OrderedDict([('number', 54), ('ref', 'spider'), ('stim1', 'turkey'), ('stim2', 'horse'), ('stim3', 'sheep'), ('stim4', 'pigeon'), ('stim5', 'snake'), ('stim6', 'dolphin'), ('stim7', 'owl'), ('stim8', 'goldfish')]), OrderedDict([('number', 55), ('ref', 'cat'), ('stim1', 'turtle'), ('stim2', 'bear'), ('stim3', 'elephant'), ('stim4', 'frog'), ('stim5', 'spider'), ('stim6', 'eagle'), ('stim7', 'crocodile'), ('stim8', 'shark')]), OrderedDict([('number', 56), ('ref', 'goldfish'), ('stim1', 'ant'), ('stim2', 'mouse'), ('stim3', 'elephant'), ('stim4', 'whale'), ('stim5', 'ladybug'), ('stim6', 'turkey'), ('stim7', 'turtle'), ('stim8', 'butterfly')]), OrderedDict([('number', 57), ('ref', 'fox'), ('stim1', 'cat'), ('stim2', 'ant'), ('stim3', 'elephant'), ('stim4', 'mouse'), ('stim5', 'hog'), ('stim6', 'sheep'), ('stim7', 'spider'), ('stim8', 'snail')]), OrderedDict([('number', 58), ('ref', 'owl'), ('stim1', 'rat'), ('stim2', 'lizard'), ('stim3', 'spider'), ('stim4', 'cat'), ('stim5', 'turtle'), ('stim6', 'dog'), ('stim7', 'crocodile'), ('stim8', 'giraffe')]), OrderedDict([('number', 59), ('ref', 'duck'), ('stim1', 'eagle'), ('stim2', 'goldfish'), ('stim3', 'turkey'), ('stim4', 'lizard'), ('stim5', 'ant'), ('stim6', 'sheep'), ('stim7', 'horse'), ('stim8', 'butterfly')]), OrderedDict([('number', 60), ('ref', 'whale'), ('stim1', 'duck'), ('stim2', 'shark'), ('stim3', 'cow'), ('stim4', 'lizard'), ('stim5', 'dolphin'), ('stim6', 'ant'), ('stim7', 'butterfly'), ('stim8', 'owl')]), OrderedDict([('number', 61), ('ref', 'tiger'), ('stim1', 'horse'), ('stim2', 'giraffe'), ('stim3', 'goldfish'), ('stim4', 'hog'), ('stim5', 'rat'), ('stim6', 'turkey'), ('stim7', 'bear'), ('stim8', 'monkey')]), OrderedDict([('number', 62), ('ref', 'tiger'), ('stim1', 'pigeon'), ('stim2', 'frog'), ('stim3', 'snail'), ('stim4', 'shark'), ('stim5', 'mouse'), ('stim6', 'cat'), ('stim7', 'owl'), ('stim8', 'lizard')]), OrderedDict([('number', 63), ('ref', 'spider'), ('stim1', 'cat'), ('stim2', 'dolphin'), ('stim3', 'hog'), ('stim4', 'cow'), ('stim5', 'turkey'), ('stim6', 'goat'), ('stim7', 'lizard'), ('stim8', 'bluebird')]), OrderedDict([('number', 64), ('ref', 'ant'), ('stim1', 'bat'), ('stim2', 'shark'), ('stim3', 'dolphin'), ('stim4', 'dog'), ('stim5', 'lizard'), ('stim6', 'sheep'), ('stim7', 'whale'), ('stim8', 'mouse')]), OrderedDict([('number', 65), ('ref', 'snail'), ('stim1', 'mouse'), ('stim2', 'dolphin'), ('stim3', 'snake'), ('stim4', 'whale'), ('stim5', 'horse'), ('stim6', 'tiger'), ('stim7', 'sheep'), ('stim8', 'turtle')]), OrderedDict([('number', 66), ('ref', 'snake'), ('stim1', 'crocodile'), ('stim2', 'whale'), ('stim3', 'turkey'), ('stim4', 'sheep'), ('stim5', 'fox'), ('stim6', 'horse'), ('stim7', 'monkey'), ('stim8', 'turtle')]), OrderedDict([('number', 67), ('ref', 'snail'), ('stim1', 'rat'), ('stim2', 'tiger'), ('stim3', 'ant'), ('stim4', 'cow'), ('stim5', 'dolphin'), ('stim6', 'spider'), ('stim7', 'cat'), ('stim8', 'monkey')]), OrderedDict([('number', 68), ('ref', 'lizard'), ('stim1', 'dolphin'), ('stim2', 'horse'), ('stim3', 'whale'), ('stim4', 'tiger'), ('stim5', 'rat'), ('stim6', 'goat'), ('stim7', 'goldfish'), ('stim8', 'eagle')]), OrderedDict([('number', 69), ('ref', 'pigeon'), ('stim1', 'sheep'), ('stim2', 'fox'), ('stim3', 'ladybug'), ('stim4', 'bear'), ('stim5', 'crocodile'), ('stim6', 'giraffe'), ('stim7', 'frog'), ('stim8', 'whale')]), OrderedDict([('number', 70), ('ref', 'frog'), ('stim1', 'dog'), ('stim2', 'snail'), ('stim3', 'cow'), ('stim4', 'hog'), ('stim5', 'tiger'), ('stim6', 'owl'), ('stim7', 'snake'), ('stim8', 'cat')]), OrderedDict([('number', 71), ('ref', 'pigeon'), ('stim1', 'spider'), ('stim2', 'whale'), ('stim3', 'eagle'), ('stim4', 'horse'), ('stim5', 'tiger'), ('stim6', 'ladybug'), ('stim7', 'turtle'), ('stim8', 'snail')]), OrderedDict([('number', 72), ('ref', 'pigeon'), ('stim1', 'duck'), ('stim2', 'dolphin'), ('stim3', 'sparrow'), ('stim4', 'butterfly'), ('stim5', 'dog'), ('stim6', 'monkey'), ('stim7', 'bat'), ('stim8', 'ant')]), OrderedDict([('number', 73), ('ref', 'giraffe'), ('stim1', 'sparrow'), ('stim2', 'fox'), ('stim3', 'bluebird'), ('stim4', 'horse'), ('stim5', 'dolphin'), ('stim6', 'frog'), ('stim7', 'butterfly'), ('stim8', 'rat')]), OrderedDict([('number', 74), ('ref', 'snake'), ('stim1', 'frog'), ('stim2', 'elephant'), ('stim3', 'bear'), ('stim4', 'dog'), ('stim5', 'snail'), ('stim6', 'giraffe'), ('stim7', 'cow'), ('stim8', 'shark')]), OrderedDict([('number', 75), ('ref', 'cat'), ('stim1', 'frog'), ('stim2', 'lizard'), ('stim3', 'goldfish'), ('stim4', 'duck'), ('stim5', 'crocodile'), ('stim6', 'mouse'), ('stim7', 'ladybug'), ('stim8', 'sparrow')]), OrderedDict([('number', 76), ('ref', 'whale'), ('stim1', 'horse'), ('stim2', 'dolphin'), ('stim3', 'rat'), ('stim4', 'sheep'), ('stim5', 'eagle'), ('stim6', 'fox'), ('stim7', 'cat'), ('stim8', 'ant')]), OrderedDict([('number', 77), ('ref', 'crocodile'), ('stim1', 'lizard'), ('stim2', 'whale'), ('stim3', 'elephant'), ('stim4', 'giraffe'), ('stim5', 'cat'), ('stim6', 'rat'), ('stim7', 'sparrow'), ('stim8', 'duck')]), OrderedDict([('number', 78), ('ref', 'dolphin'), ('stim1', 'bear'), ('stim2', 'ladybug'), ('stim3', 'turtle'), ('stim4', 'goat'), ('stim5', 'bat'), ('stim6', 'fox'), ('stim7', 'tiger'), ('stim8', 'sheep')]), OrderedDict([('number', 79), ('ref', 'hog'), ('stim1', 'spider'), ('stim2', 'dog'), ('stim3', 'bluebird'), ('stim4', 'elephant'), ('stim5', 'cow'), ('stim6', 'snake'), ('stim7', 'crocodile'), ('stim8', 'ant')]), OrderedDict([('number', 80), ('ref', 'whale'), ('stim1', 'eagle'), ('stim2', 'crocodile'), ('stim3', 'monkey'), ('stim4', 'bear'), ('stim5', 'goldfish'), ('stim6', 'sheep'), ('stim7', 'goat'), ('stim8', 'ladybug')]), OrderedDict([('number', 81), ('ref', 'horse'), ('stim1', 'turkey'), ('stim2', 'crocodile'), ('stim3', 'sheep'), ('stim4', 'turtle'), ('stim5', 'giraffe'), ('stim6', 'goat'), ('stim7', 'owl'), ('stim8', 'bluebird')]), OrderedDict([('number', 82), ('ref', 'ant'), ('stim1', 'duck'), ('stim2', 'frog'), ('stim3', 'fox'), ('stim4', 'bluebird'), ('stim5', 'elephant'), ('stim6', 'tiger'), ('stim7', 'owl'), ('stim8', 'goat')]), OrderedDict([('number', 83), ('ref', 'lizard'), ('stim1', 'duck'), ('stim2', 'mouse'), ('stim3', 'bluebird'), ('stim4', 'sheep'), ('stim5', 'snake'), ('stim6', 'frog'), ('stim7', 'butterfly'), ('stim8', 'monkey')]), OrderedDict([('number', 84), ('ref', 'bear'), ('stim1', 'goat'), ('stim2', 'fox'), ('stim3', 'whale'), ('stim4', 'bat'), ('stim5', 'cow'), ('stim6', 'spider'), ('stim7', 'snake'), ('stim8', 'shark')]), OrderedDict([('number', 85), ('ref', 'tiger'), ('stim1', 'fox'), ('stim2', 'snake'), ('stim3', 'ant'), ('stim4', 'lizard'), ('stim5', 'goat'), ('stim6', 'eagle'), ('stim7', 'turtle'), ('stim8', 'pigeon')]), OrderedDict([('number', 86), ('ref', 'snake'), ('stim1', 'spider'), ('stim2', 'pigeon'), ('stim3', 'mouse'), ('stim4', 'bluebird'), ('stim5', 'ant'), ('stim6', 'rat'), ('stim7', 'goldfish'), ('stim8', 'goat')]), OrderedDict([('number', 87), ('ref', 'snail'), ('stim1', 'frog'), ('stim2', 'butterfly'), ('stim3', 'bluebird'), ('stim4', 'goat'), ('stim5', 'hog'), ('stim6', 'shark'), ('stim7', 'crocodile'), ('stim8', 'giraffe')]), OrderedDict([('number', 88), ('ref', 'turtle'), ('stim1', 'whale'), ('stim2', 'rat'), ('stim3', 'sheep'), ('stim4', 'lizard'), ('stim5', 'duck'), ('stim6', 'pigeon'), ('stim7', 'goldfish'), ('stim8', 'cat')]), OrderedDict([('number', 89), ('ref', 'sparrow'), ('stim1', 'lizard'), ('stim2', 'cow'), ('stim3', 'frog'), ('stim4', 'ant'), ('stim5', 'sheep'), ('stim6', 'tiger'), ('stim7', 'duck'), ('stim8', 'crocodile')]), OrderedDict([('number', 90), ('ref', 'owl'), ('stim1', 'frog'), ('stim2', 'mouse'), ('stim3', 'elephant'), ('stim4', 'sparrow'), ('stim5', 'turkey'), ('stim6', 'cow'), ('stim7', 'eagle'), ('stim8', 'ant')]), OrderedDict([('number', 91), ('ref', 'eagle'), ('stim1', 'mouse'), ('stim2', 'rat'), ('stim3', 'giraffe'), ('stim4', 'crocodile'), ('stim5', 'dolphin'), ('stim6', 'sheep'), ('stim7', 'pigeon'), ('stim8', 'bear')]), OrderedDict([('number', 92), ('ref', 'duck'), ('stim1', 'horse'), ('stim2', 'sheep'), ('stim3', 'bat'), ('stim4', 'whale'), ('stim5', 'bluebird'), ('stim6', 'goat'), ('stim7', 'owl'), ('stim8', 'snail')]), OrderedDict([('number', 93), ('ref', 'elephant'), ('stim1', 'frog'), ('stim2', 'dolphin'), ('stim3', 'bear'), ('stim4', 'pigeon'), ('stim5', 'horse'), ('stim6', 'crocodile'), ('stim7', 'sheep'), ('stim8', 'turtle')]), OrderedDict([('number', 94), ('ref', 'bat'), ('stim1', 'eagle'), ('stim2', 'pigeon'), ('stim3', 'cow'), ('stim4', 'ant'), ('stim5', 'owl'), ('stim6', 'cat'), ('stim7', 'monkey'), ('stim8', 'elephant')]), OrderedDict([('number', 95), ('ref', 'spider'), ('stim1', 'snail'), ('stim2', 'tiger'), ('stim3', 'turtle'), ('stim4', 'mouse'), ('stim5', 'duck'), ('stim6', 'ant'), ('stim7', 'dog'), ('stim8', 'giraffe')]), OrderedDict([('number', 96), ('ref', 'turtle'), ('stim1', 'dolphin'), ('stim2', 'mouse'), ('stim3', 'tiger'), ('stim4', 'bat'), ('stim5', 'monkey'), ('stim6', 'ladybug'), ('stim7', 'fox'), ('stim8', 'frog')]), OrderedDict([('number', 97), ('ref', 'monkey'), ('stim1', 'dog'), ('stim2', 'horse'), ('stim3', 'bat'), ('stim4', 'turtle'), ('stim5', 'ant'), ('stim6', 'dolphin'), ('stim7', 'crocodile'), ('stim8', 'duck')]), OrderedDict([('number', 98), ('ref', 'mouse'), ('stim1', 'duck'), ('stim2', 'cat'), ('stim3', 'eagle'), ('stim4', 'snail'), ('stim5', 'goat'), ('stim6', 'butterfly'), ('stim7', 'crocodile'), ('stim8', 'lizard')]), OrderedDict([('number', 99), ('ref', 'bluebird'), ('stim1', 'crocodile'), ('stim2', 'goldfish'), ('stim3', 'turkey'), ('stim4', 'goat'), ('stim5', 'sparrow'), ('stim6', 'butterfly'), ('stim7', 'mouse'), ('stim8', 'sheep')]), OrderedDict([('number', 100), ('ref', 'dolphin'), ('stim1', 'tiger'), ('stim2', 'ant'), ('stim3', 'turtle'), ('stim4', 'bluebird'), ('stim5', 'cow'), ('stim6', 'frog'), ('stim7', 'duck'), ('stim8', 'spider')]), OrderedDict([('number', 101), ('ref', 'cat'), ('stim1', 'bat'), ('stim2', 'bluebird'), ('stim3', 'snail'), ('stim4', 'giraffe'), ('stim5', 'turkey'), ('stim6', 'ant'), ('stim7', 'tiger'), ('stim8', 'hog')]), OrderedDict([('number', 102), ('ref', 'ant'), ('stim1', 'turkey'), ('stim2', 'bluebird'), ('stim3', 'bear'), ('stim4', 'turtle'), ('stim5', 'lizard'), ('stim6', 'dolphin'), ('stim7', 'frog'), ('stim8', 'crocodile')]), OrderedDict([('number', 103), ('ref', 'cow'), ('stim1', 'giraffe'), ('stim2', 'mouse'), ('stim3', 'whale'), ('stim4', 'crocodile'), ('stim5', 'bluebird'), ('stim6', 'elephant'), ('stim7', 'turtle'), ('stim8', 'owl')]), OrderedDict([('number', 104), ('ref', 'ant'), ('stim1', 'butterfly'), ('stim2', 'giraffe'), ('stim3', 'rat'), ('stim4', 'goldfish'), ('stim5', 'duck'), ('stim6', 'spider'), ('stim7', 'horse'), ('stim8', 'fox')]), OrderedDict([('number', 105), ('ref', 'ladybug'), ('stim1', 'cat'), ('stim2', 'owl'), ('stim3', 'bat'), ('stim4', 'bluebird'), ('stim5', 'shark'), ('stim6', 'lizard'), ('stim7', 'ant'), ('stim8', 'goldfish')]), OrderedDict([('number', 106), ('ref', 'bluebird'), ('stim1', 'snail'), ('stim2', 'mouse'), ('stim3', 'ladybug'), ('stim4', 'ant'), ('stim5', 'duck'), ('stim6', 'giraffe'), ('stim7', 'goat'), ('stim8', 'eagle')]), OrderedDict([('number', 107), ('ref', 'giraffe'), ('stim1', 'mouse'), ('stim2', 'whale'), ('stim3', 'hog'), ('stim4', 'lizard'), ('stim5', 'rat'), ('stim6', 'cat'), ('stim7', 'frog'), ('stim8', 'sheep')]), OrderedDict([('number', 108), ('ref', 'dog'), ('stim1', 'elephant'), ('stim2', 'bat'), ('stim3', 'goat'), ('stim4', 'turkey'), ('stim5', 'butterfly'), ('stim6', 'whale'), ('stim7', 'hog'), ('stim8', 'crocodile')]), OrderedDict([('number', 109), ('ref', 'turkey'), ('stim1', 'butterfly'), ('stim2', 'snail'), ('stim3', 'cat'), ('stim4', 'sheep'), ('stim5', 'owl'), ('stim6', 'giraffe'), ('stim7', 'snake'), ('stim8', 'mouse')]), OrderedDict([('number', 110), ('ref', 'bear'), ('stim1', 'duck'), ('stim2', 'turkey'), ('stim3', 'mouse'), ('stim4', 'bluebird'), ('stim5', 'turtle'), ('stim6', 'hog'), ('stim7', 'sheep'), ('stim8', 'dolphin')]), OrderedDict([('number', 111), ('ref', 'spider'), ('stim1', 'fox'), ('stim2', 'bluebird'), ('stim3', 'mouse'), ('stim4', 'bat'), ('stim5', 'sparrow'), ('stim6', 'goat'), ('stim7', 'dog'), ('stim8', 'elephant')])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="conditions.csv" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="trials" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="initialize_stimuli"/>
+    <Routine name="trial"/>
+    <LoopTerminator name="trials"/>
+    <Routine name="goodbye"/>
+  </Flow>
+</PsychoPy2experiment>
