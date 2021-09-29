@@ -1,1 +1,7 @@
 files: '../../sample-materials/sample-images'
+num_images_per_trial: 8
+display_radius: 250.8 # (in pixels), the size of the display in the image experiment
+image_size: 115
+num_words_per_trial: 8
+word_display_radius: 10 # in degrees (not pixels), the size of the display in word experiment
+text_stim_height: 1.2 #  controls size of text stimuli in word experiment
