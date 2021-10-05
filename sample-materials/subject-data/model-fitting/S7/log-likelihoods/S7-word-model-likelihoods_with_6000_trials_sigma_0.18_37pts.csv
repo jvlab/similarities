@@ -1,0 +1,8 @@
+,Model,Log Likelihood,number of points,Experiment,Subject
+0,1D,-0.5747546437802169,37,word,YCL
+1,2D,-0.45746709728933405,37,word,YCL
+2,3D,-0.42781044084367315,37,word,YCL
+3,4D,-0.4165536225286553,37,word,YCL
+4,5D,-0.4032945793969287,37,word,YCL
+5,best,-0.2611738432002573,37,word,YCL
+6,random,-1.0,37,word,YCL

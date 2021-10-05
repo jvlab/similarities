@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.2.4),
-    on Tue Sep 28 14:42:30 2021
+    on Wed Sep 29 12:08:21 2021
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -121,23 +121,35 @@ key_resp = keyboard.Keyboard()
 # Initialize components for Routine "initialize_stimuli"
 initialize_stimuliClock = core.Clock()
 from psychopy.clock import StaticPeriod
+import math
 
+with open('../config.yaml', "r") as stream:  # Read in directory containing stimulus set of images
+    exp_config = yaml.safe_load(stream)
+    NUM_STIMULI_IN_SURROUND = exp_config['num_images_per_trial']
+    DISPLAY_RADIUS = exp_config['display_radius']
+
+theta_interval = (2 * math.pi)/NUM_STIMULI_IN_SURROUND
 number = 1
-r0 = 250.8
-r = 177.3
+r0 = DISPLAY_RADIUS #250.8
+r = DISPLAY_RADIUS * math.cos(theta_interval) #177.3
 
-stim_locations = {
-    'stim1': (r0, 0),
-    'stim2': (r, r),
-    'stim3': (0, r0),
-    'stim4': (-r, r),
-    'stim5': (-r0, 0),
-    'stim6': (-r, -r),
-    'stim7': (0, -r0),
-    'stim8': (r, -r),
-    'ref': (0, 0)
-}
-
+stim_locations = {'ref': (0, 0)}
+for _i in range(NUM_STIMULI_IN_SURROUND):
+    angle = theta_interval*_i
+    stim_locations['stim'+str(_i+1)] = (r0*cos(angle), r0*sin(angle))
+    
+#stim_locations = {
+#    'stim1': (r0, 0),
+#    'stim2': (r, r),
+#    'stim3': (0, r0),
+#    'stim4': (-r, r),
+#    'stim5': (-r0, 0),
+#    'stim6': (-r, -r),
+#    'stim7': (0, -r0),
+#    'stim8': (r, -r),
+#    'ref': (0, 0)
+#}
+#
 
 # Initialize components for Routine "trial"
 trialClock = core.Clock()
@@ -243,6 +255,8 @@ thisExp.addData('start_up.stopped', start_up.tStopRefresh)
 with open('../config.yaml', "r") as stream:  # Read in directory containing stimulus set of images
     exp_config = yaml.safe_load(stream)
     PATH_TO_STIMULI = exp_config['files']
+    IMAGE_SIZE = exp_config['image_size']
+ 
 image_files = glob.glob('{}/*.png'.format(PATH_TO_STIMULI))
 if len(image_files) == 0:
     image_files = glob.glob('{}/*.jpeg'.format(PATH_TO_STIMULI))
@@ -251,7 +265,7 @@ done = False
 for image_file in image_files:
     image_name = image_file.split('/')[-1].split('.')[0]
     stimulus_objects[image_name] = visual.ImageStim(win=win,
-                                    size=[115, 115],
+                                    size=[IMAGE_SIZE, IMAGE_SIZE],
                                     units='pix',
                                     image=image_file,
                                     opacity=1)
@@ -577,7 +591,7 @@ for thisTrial in trials:
                 clicked_animals.append(letter_stim.image.split('/')[-1].split('.')[0])
                 clicked_objects.append(letter_stim.name)
         
-        if len(set(clicked_objects)) == 8:
+        if len(set(clicked_objects)) == NUM_STIMULI_IN_SURROUND:
             x, y = mouse.getPos()
             mouse.setPos((0, 0))
             continueRoutine = False

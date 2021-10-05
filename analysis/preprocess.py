@@ -28,7 +28,7 @@ if __name__ == '__main__':
     experiment_name = input("Experiment name: ")
     output_directory = '{}/preprocessed'.format(directory)
     data_directory = '{}/raw'.format(directory)
-    subject_names = (input("Enter Subject IDs separated by spaces")).split(' ')
+    subject_names = (input("Enter Subject IDs separated by spaces: ")).split(' ')
     print('Preprocessing data from {} experiment for subjects {}'.format(experiment_name, subject_names))
 
     for subject in subject_names:
