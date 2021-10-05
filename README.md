@@ -13,3 +13,11 @@ This project uses PsychoPy v2020.2.10. If there is an issue running the experime
 
 ## Create Trials
 How to use trial_configurations to get trials. 
+
+## Sample Trials
+A trial from the word experiment with `num_stimuli_per_trial=`
+
+
+A trial from the image experiment with `num_stimuli_per_trial=`
+
+The default value is 8.
