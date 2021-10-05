@@ -62,3 +62,11 @@ python3 -m analysis.preprocess
 3. Subject IDs *(strings separated by spaces if more than one)*
 
 
+## Sample Trials
+A trial from the word experiment with `num_stimuli_per_trial=`
+
+
+A trial from the image experiment with `num_stimuli_per_trial=`
+
+The default value is 8.
+
