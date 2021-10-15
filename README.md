@@ -12,6 +12,30 @@ The following tutorial can help with installing Python: https://realpython.com/i
 Install PsychoPy here: https://www.psychopy.org/download.html. 
 This project uses PsychoPy v2020.2.10. If there is an issue running the experiment, try with running it with v2020.2.10, which can be found here: https://github.com/psychopy/psychopy/releases.
 
+## Installation
+
+```
+git clone https://github.com/jvlab/perceptual-similarities.git
+```
+Run scripts from the `perceptual-similarities` directory as modules, e.g.,
+```
+python3 -m analysis.script_name
+```
+
+## Usage example
+
+A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+
+_For more examples and usage, please refer to the [Wiki][wiki]._
+
+## Development setup
+ TODO
+Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
+
+```sh
+make install
+npm test
+```
 
 ### Trials in an Experiment
 In a typical experiment, there are a series of ranking trials. The analysis requires an  experiment to be repeated multiple times. Our standard procedure assumes 5 repeats. This way each trial ends up being performed 5 times.
@@ -119,12 +143,20 @@ subject-data/
 
 
 ### Scripts and Their Input Parameters
+#### trial_configuration.py
+This as explained above creates a conditions file, containing the configurations of experimental trials.
+There are no user inputs that need to be entered into the command line.
+```
+cd ~/perceptual-similarities
+python3 -m analysis.trial_configuration
+```
+
 #### preprocess.py
 This converts the raw csv files containing similarity judgments from a subject's complete dataset, and combines them into a single json file.
 To run, navigate to the main directory. (All scripts should be run from this directory).
 
 ```
-cd perceptual-similarities
+cd ~/perceptual-similarities
 python3 -m analysis.preprocess
 ```
 
@@ -133,6 +165,39 @@ python3 -m analysis.preprocess
 2. Name of experiment *(string)*: this is used to name the output file
 3. Subject IDs *(strings separated by spaces if more than one)*
 
+#### describe_data.py
+This generates some figures describing the choice probabilities obtained experimentally after they have been preprocessed.
+
+```
+cd ~/perceptual-similarities
+python3 -m analysis.describe_data
+```
+
+*Input parameters:*
+1. Subject IDs *(strings separated by spaces if more than one)*
+2. Path to subject-data/preprocessed directory *(string)*
+
+#### model_fitting.py
+This script ....
+```
+cd ~/perceptual-similarities
+python3 -m analysis.model_fitting
+```
+
+*Input parameters:*
+1. 
+
+#### perceptual_space_visualization.py
+ ....
+ This script runs for one subject at a time.
+```
+cd ~/perceptual-similarities
+python3 -m analysis.perceptual_spaces_visualization
+```
+
+*Input parameters:*
+1. Path to npy file (string)
+2. Subject name or ID (string)
 
 ### Reproducing Figures
 To reproduce figures from our accompanying manuscript, do the following:
@@ -164,31 +229,6 @@ Enter the input parameters requested as follows, and press enter to create the f
 ```
 Path to npy file containing 5D coordinates (e.g., ./sample-materials/subject-data/model-fitting/S7/S7_word_anchored_points_sigma_0.18_dim_5.npy): ./sample-materials/subject-data/model-fitting/S7/S7_word_anchored_points_sigma_0.18_dim_5.npy
 Subject name or ID (e.g., S7): S7
-```
-
-## Installation
-
-```
-git clone https://github.com/jvlab/perceptual-similarities.git
-```
-Run scripts from the `perceptual-similarities` directory as modules, e.g.,
-```
-python3 -m analysis.script_name
-```
-
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
-
-## Development setup
- TODO
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
-
-```sh
-make install
-npm test
 ```
 
 ## Release History
