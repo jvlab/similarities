@@ -22,12 +22,6 @@ Run scripts from the `perceptual-similarities` directory as modules, e.g.,
 python3 -m analysis.script_name
 ```
 
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
-
 ## Development setup
  TODO
 Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
@@ -37,6 +31,7 @@ make install
 npm test
 ```
 
+## Usage
 ### Trials in an Experiment
 In a typical experiment, there are a series of ranking trials. The analysis requires an  experiment to be repeated multiple times. Our standard procedure assumes 5 repeats. This way each trial ends up being performed 5 times.
 A sample trial comprises a stimulus in the center, known as the 'reference', and 8 surrounding stimuli. The number of surrounding stimuli can vary and is controlled by the `num_stimuli_per_trial` parameter.
