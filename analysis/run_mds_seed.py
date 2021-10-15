@@ -17,9 +17,9 @@ import logging
 import scipy.spatial as spatial
 from scipy import optimize
 
-from src import pairwise_likelihood_analysis as analysis, mds, gram_schmidt as gs
-from src import util
-from src.minimization import calculate_gradient, gradient_descent
+from analysis import pairwise_likelihood_analysis as analysis, mds, gram_schmidt as gs
+from analysis import util
+from analysis.minimization import calculate_gradient, gradient_descent
 
 logging.basicConfig(level=logging.DEBUG)
 LOG = logging.getLogger(__name__)
@@ -60,7 +60,7 @@ def points_of_best_fit(judgments, args, start_points=None, minimization='gradien
     # make maxiter 60000 for 5D model
     options_min = {
         'disp': True,
-        'fatol': 1e-5}
+        'fatol': args['fatol']}
     if args['n_dim'] < 4:
         options_min['maxiter'] = 85000
     elif args['n_dim'] >= 4:
@@ -79,8 +79,7 @@ def points_of_best_fit(judgments, args, start_points=None, minimization='gradien
         solution = optimal.x
         solution_ll = optimal.fun
     else:
-        solution = gradient_descent(calculate_gradient, start_params, 0.01, pairs_a, pairs_b, response_counts,
-                                    args, n_iter=50000, tolerance=1e-5)
+        solution = gradient_descent(calculate_gradient, start_params, pairs_a, pairs_b, response_counts, args)
         solution_ll = cost(solution, pairs_a, pairs_b, response_counts, args)
 
     coordinates = analysis.params_to_points(solution, args['num_stimuli'], args['n_dim'])

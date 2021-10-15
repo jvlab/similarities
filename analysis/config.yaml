@@ -1,9 +1,17 @@
 # NOTE: To be safe, use spaces, not tabs
-# Experimental Paradigm Parameters
+# Experimental Design Parameters
 num_stimuli: 37
-overlap: 2 # do not change unless necessary - controls how many stimuli are shared with one other trial with same ref
-num_stimuli_per_trial: 14
-path_to_stimulus_list: '../sample-materials/image-exp-materials/sample_image_stimuli.txt'
+overlap: 2 # do not change unless necessary - controls size of overlapping set of stimuli across two trials
+num_stimuli_per_trial: 8
+path_to_stimulus_list: './sample-materials/word-exp-materials/stimuli.txt'
 # Modeling Parameters
 sigma: 0.18
 max_trials: 6000
+model_dimensions: [1, 2, 3, 4, 5]
+num_repeats: 5
+epsilon: 1e-30
+minimization: 'gradient-descent'
+tolerance: 1e-5
+fatol: 1e-5
+max_iterations: 1000 # 50000
+learning_rate: 0.01

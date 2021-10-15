@@ -20,14 +20,16 @@ Gaussian distributions, which is not exactly Gaussian. So erf is merely an appro
 since it only accounts for Gaussian sources of noise.
 """
 import logging
-
+import yaml
 import numpy as np
 from scipy import special
 from scipy.spatial.distance import pdist, squareform
 
 logging.basicConfig(level=logging.INFO)
 LOG = logging.getLogger(__name__)
-EPSILON = 1e-30  # consider setting this to sys.float_info.min ~ 2e-300
+with open('./analysis/config.yaml', "r") as stream:
+    data = yaml.safe_load(stream)
+    EPSILON = float(data['epsilon'])
 
 
 def params_to_points(x0, num_stimuli, n_dim):
@@ -101,7 +103,7 @@ def dist_model_ll_vectorized(pair_a, pair_b, judgment_counts, params, stimuli):
     that takes into account noise as Gaussian sources. """
     # get model probabilities and join counts and model prob for each trial (N, p)
     interstimulus_distances = squareform(pdist(stimuli))
-    probs = find_probabilities(interstimulus_distances, pair_a, pair_b, params['sigmas'], params['no_noise'])
+    probs = find_probabilities(interstimulus_distances, pair_a, pair_b, params['sigma'], params['no_noise'])
     # calculate log-likelihood, is_bad flag
     return calculate_ll(judgment_counts, probs, params['num_repeats'])
 

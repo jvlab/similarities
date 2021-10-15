@@ -6,20 +6,15 @@ import json
 import glob
 import numpy as np
 from itertools import combinations
-from sklearn.decomposition import PCA
 
 # Read in parameters from config file
-with open('../config.yaml', "r") as stream:
+with open('./analysis/config.yaml', "r") as stream:
     data = yaml.safe_load(stream)
     STIMULUS_LIST_FILE = data['path_to_stimulus_list']
 
 
 def stimulus_names():
-    stimuli0 = open(STIMULUS_LIST_FILE).readlines()
-    stimuli = ['dolphin', 'goldfish', 'shark', 'whale', 'bluebird', 'duck', 'eagle', 'owl', 'pigeon', 'sparrow',
-               'turkey', 'mouse', 'rat', 'bat', 'bear', 'cat', 'dog', 'fox', 'goat', 'sheep',
-               'hog', 'cow', 'horse', 'giraffe', 'elephant', 'monkey', 'tiger', 'ant', 'butterfly', 'ladybug',
-               'spider', 'snail', 'turtle', 'frog', 'lizard', 'snake', 'crocodile']
+    stimuli = open(STIMULUS_LIST_FILE).read().split('\n')
     return stimuli
 
 
@@ -127,15 +122,36 @@ def read_npy(filename):
     return np.load(filename)
 
 
-def run_pca(matrix, n_dim):
-    n_components = n_dim
-    pca = PCA(n_components=n_components)
-    return pca.fit_transform(matrix)
-
-
 def add_row(fields, table):
     for fieldname, value in fields.items():
         table[fieldname].append(value)
     return table
 
-stimulus_names()
+
+def read_in_params():
+    # Read in parameters from config file
+    with open('./analysis/config.yaml', "r") as stream:
+        user_config = yaml.safe_load(stream)
+        sigma_compare = float(user_config['sigma'])
+        total_noise = {'compare': sigma_compare, 'dist': 0}  # because downstream processing expects a key 'dist'
+        user_config['sigma'] = total_noise
+    # Fix type of all inputs
+    user_config['num_stimuli'] = int(user_config['num_stimuli'])
+    user_config['overlap'] = int(user_config['overlap'])
+    user_config['num_stimuli_per_trial'] = int(user_config['num_stimuli_per_trial'])
+    user_config['path_to_stimulus_list'] = str(user_config['path_to_stimulus_list'])
+    user_config['max_trials'] = int(user_config['max_trials'])
+    user_config['model_dimensions'] = [int(number) for number in list(user_config['model_dimensions'])]
+    user_config['num_repeats'] = int(user_config['num_repeats'])
+    user_config['epsilon'] = float(user_config['epsilon'])
+    user_config['minimization'] = str(user_config['minimization'])
+    user_config['tolerance'] = float(user_config['tolerance'])
+    user_config['max_iterations'] = int(user_config['max_iterations'])
+    user_config['learning_rate'] = float(user_config['learning_rate'])
+    user_config['n_dim'] = None
+    user_config['no_noise'] = False
+    user_config['verbose'] = False
+    return (user_config,
+            stimulus_names(),
+            stimulus_name_to_id(),
+            stimulus_id_to_name())

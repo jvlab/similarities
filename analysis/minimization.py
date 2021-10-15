@@ -1,17 +1,7 @@
-import cProfile
+
 import logging
-import random
-import time
-
 import numpy as np
-from scipy.spatial import procrustes
-
-import src.euclidean_model as model
-import src.experiment as exp
-import src.gram_schmidt as gs
-import src.mds as mds
-import src.pairwise_likelihood_analysis as analysis
-import src.util as util
+import analysis.pairwise_likelihood_analysis as analysis
 
 logging.basicConfig(level=logging.INFO)
 LOG = logging.getLogger(__name__)
@@ -28,7 +18,6 @@ def cost(stimulus_params, pair_a, pair_b, counts, params):
 
 def calculate_gradient(vector, pair_a, pair_b, counts, params, vector_length, delta=1e-03):
     baseline_loss = cost(vector, pair_a, pair_b, counts, params)
-    # costs.append(baseline_loss)
     deltas = np.eye(vector_length) * delta
     vectors = np.tile(vector.reshape(vector_length, 1), (1, vector_length))
     delta_vectors = vectors + deltas
@@ -36,7 +25,7 @@ def calculate_gradient(vector, pair_a, pair_b, counts, params, vector_length, de
     return gradient
 
 
-def gradient_descent(gradient, start, learn_rate, pair_a, pair_b, counts, params, n_iter=50, tolerance=1e-08):
+def gradient_descent(gradient, start, pair_a, pair_b, counts, params):
     """"
     Implements stochastic gradient descent.
     The code below is my first attempt and not an optimized program
@@ -45,15 +34,15 @@ def gradient_descent(gradient, start, learn_rate, pair_a, pair_b, counts, params
     vector = np.array(start)
     vector_length = len(vector)
     # vector = vector.reshape(len(vector), 1)  # in case it was a row, vector, make column vector
-    for _ in range(n_iter):
-        diff = -learn_rate * gradient(vector, pair_a, pair_b, counts, params, vector_length)
-        if np.all(np.abs(diff) <= tolerance):
+    for _ in range(params['max_iterations']):
+        diff = -params['learning_rate'] * gradient(vector, pair_a, pair_b, counts, params, vector_length)
+        if np.all(np.abs(diff) <= params['tolerance']):
             print("Stopped on Iteration number {}".format(_ + 1))
             break
         vector += diff
         if _ % 1000 == 0:
             print('{} Iterations done'.format(_))
-    print("Stopped on Iteration number {}".format(n_iter))
+    print("Stopped on Iteration number {}".format(_))
     # vector = vector.reshape(1, len(vector))  # returned vector must be a regular  1D array
     return vector
 

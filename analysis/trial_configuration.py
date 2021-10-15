@@ -14,10 +14,10 @@ import yaml
 
 
 # helper
-def create_subsets(stimuli, window, overlap=2):
+def create_subsets(stimuli, num_stimuli_per_trial, overlap=2):
     """
     Given a list of words, group the words into 8 groups of 6, randomly.
-    :param window: (int) defines the length of the sliding window to use when making groups
+    :param num_stimuli_per_trial: (int) defines the length of the sliding window to use when making groups
     :param overlap (int) defines how many stimuli appear together in two trials
     :param stimuli: (List) Words (stimulus names) of length 36
     :return: subsets: (List of lists) a list of 6 lists of length 6
@@ -27,18 +27,18 @@ def create_subsets(stimuli, window, overlap=2):
         raise Exception('Number of stimuli needs to be valid: 1 + a multiple of 6 (19, 25, 31, 37, 49)')
     i = 0
     subsets = []
-    while i < len(stimuli) - window:
-        subset = stimuli[i:i + window]
+    while i < len(stimuli) - num_stimuli_per_trial:
+        subset = stimuli[i:i + num_stimuli_per_trial]
         random.shuffle(subset)  # shuffling so that stimuli are grouped randomly into trials
         subsets.append(tuple(subset))
-        i += window - overlap
+        i += num_stimuli_per_trial - overlap
     last = stimuli[i:] + stimuli[:overlap]
     random.shuffle(last)  # shuffling so that the last trial contains stimuli in a random order
     subsets.append(tuple(last))
     return subsets
 
 
-def create_trials(stimuli, num_stimuli=37, window=8):
+def create_trials(stimuli, num_stimuli=37, num_stimuli_per_trial=8):
     """
     Given a list of words, create all trial configurations for all num_stimuli references.
     For each of the words,do the following:
@@ -59,7 +59,7 @@ def create_trials(stimuli, num_stimuli=37, window=8):
     for i in range(len(stimuli)):
         remaining_stimuli = stimuli[:i] + stimuli[i + 1:]
         random.shuffle(remaining_stimuli)
-        group = create_subsets(remaining_stimuli, window)
+        group = create_subsets(remaining_stimuli, num_stimuli_per_trial)
         for circle in group:
             trial = stimuli[i], circle
             trial_sets.append(trial)
@@ -70,8 +70,8 @@ if __name__ == '__main__':
     # Read in parameters from config file
     with open('./config.yaml', "r") as stream:
         data = yaml.safe_load(stream)
-        NUM_STIMULI = data['num_stimuli']
-        NUM_STIMULI_PER_TRIAL = data['num_stimuli_per_trial']
+        NUM_STIMULI = int(data['num_stimuli'])
+        NUM_STIMULI_PER_TRIAL = int(data['num_stimuli_per_trial'])
         STIMULUS_LIST_FILE = data['path_to_stimulus_list']
 
     # read in list of stimuli
