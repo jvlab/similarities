@@ -205,7 +205,7 @@ if __name__ == '__main__':
     subs = input("Subjects separated by spaces:")
     SUBJECTS = subs.split(' ')
     DATA_DIR = input("Path to the subject-data/preprocessed directory\n e.g., "
-                     "'../sample-materials/subject-data/preprocessed': ")
+                     "'./sample-materials/subject-data/preprocessed': ")
 
     ALL_DATA = read_all_files(SUBJECTS, DATA_DIR)
     # Display choice probability distributions

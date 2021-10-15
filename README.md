@@ -1,6 +1,6 @@
 
 ## Perceptual Similarities
-
+[...]
 
 ### Downloading dependencies:
 
@@ -41,8 +41,8 @@ Open `experiments/config.yaml` and set the values of these parameters to the des
 
 Then, run the script from the analysis subdirectory in perceptual-similarities:
 ```
-$ cd ./analysis
-$ python3 trial_configuration.py
+$ cd ~/perceptual-similarities
+$ python3 -m analysis.trial_configuration
 
 $ ls *.csv
 trial_conditions.csv
@@ -134,36 +134,46 @@ python3 -m analysis.preprocess
 3. Subject IDs *(strings separated by spaces if more than one)*
 
 
-
-
 ### Reproducing Figures
-To reproduce figures from our accompanying manuscript, do the  following:
+To reproduce figures from our accompanying manuscript, do the following:
+Run `describe_data` from the `perceptual-similarities` directory
 
+Note that since only one subject's dataset is provided, the comparison heatmap (Figure 4) will not be made.
+```
+$ cd ~/perceptual-similarities
+$ python3 -m analysis.describe_data
+```
 
+This will result in the following output, in response to which you should enter "S7", the identifier of the dataset provided
+```
+Subjects separated by spaces:S7
+```
+The script will ask for a path to the preprocessed data directory. Enter it as follows:
+```
+Path to the subject-data/preprocessed directory
+ e.g., './sample-materials/subject-data/preprocessed': ./sample-materials/subject-data/preprocessed
+```
+This will produce two charts that show data from Figures 3A and 4.
 
-# Product Name
-> Short blurb about what your product does.
-
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
-One to two paragraph statement about your product and what it does.
-
-![](header.png)
+To produce Figure 6, run `perceptual_space_visualization` and enter the path to the npy file containing model-fitting results:
+```
+$ cd ~/perceptual-similarities
+$ python3 -m analysis.perceptual_space_visualization
+```
+Enter the input parameters requested as follows, and press enter to create the figure.
+```
+Path to npy file containing 5D coordinates (e.g., ./sample-materials/subject-data/model-fitting/S7/S7_word_anchored_points_sigma_0.18_dim_5.npy): ./sample-materials/subject-data/model-fitting/S7/S7_word_anchored_points_sigma_0.18_dim_5.npy
+Subject name or ID (e.g., S7): S7
+```
 
 ## Installation
 
-OS X & Linux:
-
-```sh
-npm install my-crazy-module --save
 ```
-
-Windows:
-
-```sh
-edit autoexec.bat
+git clone https://github.com/jvlab/perceptual-similarities.git
+```
+Run scripts from the `perceptual-similarities` directory as modules, e.g.,
+```
+python3 -m analysis.script_name
 ```
 
 ## Usage example
@@ -173,7 +183,7 @@ A few motivating and useful examples of how your product can be used. Spice this
 _For more examples and usage, please refer to the [Wiki][wiki]._
 
 ## Development setup
-
+ TODO
 Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
 
 ```sh
@@ -182,27 +192,19 @@ npm test
 ```
 
 ## Release History
-
-* 0.2.1
-    * CHANGE: Update docs (module code remains unchanged)
-* 0.2.0
-    * CHANGE: Remove `setDefaultXYZ()`
-    * ADD: Add `init()`
-* 0.1.1
-    * FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
 * 0.1.0
     * The first proper release
-    * CHANGE: Rename `foo()` to `bar()`
+    * CHANGE: Added scripts in analysis
 * 0.0.1
     * Work in progress
 
-## Meta
+## Metadata
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+Suniyya A. Waraich – saw4003@med.cornell.edu
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/suniyya/github-link](https://github.com/suniyya)
 
 ## Contributing
 
@@ -212,10 +214,3 @@ Distributed under the XYZ license. See ``LICENSE`` for more information.
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
