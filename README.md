@@ -17,13 +17,18 @@ This project uses PsychoPy v2020.2.10. If there is an issue running the experime
 ```
 git clone https://github.com/jvlab/perceptual-similarities.git
 ```
+Install required packages
+```
+cd ~/perceptual-similarities
+pip install -r requirements.txt 
+```
 Run scripts from the `perceptual-similarities` directory as modules, e.g.,
 ```
 python3 -m analysis.script_name
 ```
 
 ## Development setup
- TODO
+ TODO (incomplete)
 Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
 
 ```sh
