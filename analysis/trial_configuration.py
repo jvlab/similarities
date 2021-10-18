@@ -68,7 +68,7 @@ def create_trials(stimuli, num_stimuli=37, num_stimuli_per_trial=8):
 
 if __name__ == '__main__':
     # Read in parameters from config file
-    with open('./config.yaml', "r") as stream:
+    with open('./analysis/config.yaml', "r") as stream:
         data = yaml.safe_load(stream)
         NUM_STIMULI = int(data['num_stimuli'])
         NUM_STIMULI_PER_TRIAL = int(data['num_stimuli_per_trial'])
