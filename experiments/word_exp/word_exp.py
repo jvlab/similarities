@@ -342,7 +342,7 @@ for trial in trials:
                     gotValidClick = False
                     for obj in circle:
                         if obj.contains(mouse):
-                            if obj.color == 'white':
+                            if all(obj.color) == 1:
                                 obj.setColor([0.1, 0.1, 0.25], 'rgb')
                                 numClicks += 1
                                 mouse.clicked_name.append(obj.name)
