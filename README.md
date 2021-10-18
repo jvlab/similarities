@@ -218,12 +218,12 @@ The script will ask for a path to the preprocessed data directory. Enter it as f
 Path to the subject-data/preprocessed directory
  e.g., './sample-materials/subject-data/preprocessed': ./sample-materials/subject-data/preprocessed
 ```
-This will produce two charts that show data from Figures 3A and 4.
+This will produce two charts (one after the other) that show data from Figures 3A and 4.
 
 To produce Figure 6, run `perceptual_space_visualization` and enter the path to the npy file containing model-fitting results:
 ```
 $ cd ~/perceptual-similarities
-$ python3 -m analysis.perceptual_space_visualization
+$ python3 -m analysis.perceptual_space_visualizations
 ```
 Enter the input parameters requested as follows, and press enter to create the figure.
 ```
