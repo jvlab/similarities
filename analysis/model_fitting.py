@@ -25,11 +25,11 @@ CONFIG, STIMULI, NAMES_TO_ID, ID_TO_NAME = read_in_params()
 if __name__ == '__main__':
     # enter path to subject data (json file)
     FILEPATH = input("Path to json file containing subject's preprocessed data"
-                     " (e.g., ./sample-materials/subject-data/preprocessed/S7_word_exp.json: ")
-    EXP = input("Experiment name: ")
-    SUBJECT = input("Subject name or ID: ")
-    ITERATIONS = int(input("Number of iterations (how many times should this analysis be run?):"))
-    OUTDIR = input("Output directory:")
+                     " (e.g., ./sample-materials/subject-data/preprocessed/S7_sample_word_exp.json: ")
+    EXP = input("Experiment name (e.g., sample_word): ")
+    SUBJECT = input("Subject name or ID (e.g., S7): ")
+    ITERATIONS = int(input("Number of iterations - how many times this should analysis be run (e.g. 1) : "))
+    OUTDIR = input("Output directory (e.g., ./sample-materials/subject-data) : ")
     SIGMA = input("Enter number or 'y' to use default (0.18):")
     if SIGMA != 'y':
         CONFIG['sigma'] = {

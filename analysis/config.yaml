@@ -13,5 +13,5 @@ epsilon: 1e-30
 minimization: 'gradient-descent'
 tolerance: 1e-5
 fatol: 1e-5
-max_iterations: 1000 # 50000
+max_iterations: 50000
 learning_rate: 0.01
