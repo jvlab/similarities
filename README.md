@@ -1,6 +1,5 @@
 
-## Perceptual Similarities
-[...]
+## Similarities
 
 ### Downloading dependencies:
 
@@ -15,14 +14,14 @@ This project uses PsychoPy v2020.2.10. If there is an issue running the experime
 ## Installation
 
 ```
-git clone https://github.com/jvlab/perceptual-similarities.git
+git clone https://github.com/jvlab/similarities.git
 ```
 Install required packages
 ```
-cd ~/perceptual-similarities
+cd ~/similarities
 pip install -r requirements.txt 
 ```
-Run scripts from the `perceptual-similarities` directory as modules, e.g.,
+Run scripts from the `similarities` directory as modules, e.g.,
 ```
 python3 -m analysis.script_name
 ```
@@ -63,9 +62,9 @@ The script `trial_configuration.py` takes in the following parameters from
 
 Open `experiments/config.yaml` and set the values of these parameters to the desired values.
 
-Then, run the script from the analysis subdirectory in perceptual-similarities:
+Then, run the script from the analysis subdirectory in similarities:
 ```
-$ cd ~/perceptual-similarities
+$ cd ~/similarities
 $ python3 -m analysis.trial_configuration
 
 $ ls *.csv
@@ -147,7 +146,7 @@ subject-data/
 This as explained above creates a conditions file, containing the configurations of experimental trials.
 There are no user inputs that need to be entered into the command line.
 ```
-cd ~/perceptual-similarities
+cd ~/similarities
 python3 -m analysis.trial_configuration
 ```
 
@@ -156,7 +155,7 @@ This converts the raw csv files containing similarity judgments from a subject's
 To run, navigate to the main directory. (All scripts should be run from this directory).
 
 ```
-cd ~/perceptual-similarities
+cd ~/similarities
 python3 -m analysis.preprocess
 ```
 
@@ -169,7 +168,7 @@ python3 -m analysis.preprocess
 This generates some figures describing the choice probabilities obtained experimentally after they have been preprocessed.
 
 ```
-cd ~/perceptual-similarities
+cd ~/similarities
 python3 -m analysis.describe_data
 ```
 
@@ -178,20 +177,25 @@ python3 -m analysis.describe_data
 2. Path to subject-data/preprocessed directory *(string)*
 
 #### model_fitting.py
-This script ....
+This script takes in similarity judgments (reads in a json file) and finds the configuration of points in 1, 2, 3, 4 and 5 dimensional space that explain the judgments.
 ```
-cd ~/perceptual-similarities
+cd ~/similarities
 python3 -m analysis.model_fitting
 ```
 
 *Input parameters:*
-1. 
+1. Path to json file containing subject's preprocessed data
+2. Experiment name
+3. Subject name or ID
+4. Number of iterations - how many times this should analysis be run (e.g. 1)
+5. Output directory
+6. Sigma (a noise parameter - default value = 0.18)
 
 #### perceptual_space_visualization.py
- ....
- This script runs for one subject at a time.
+
+ This script applies PCA on the 5D coordinates return by the modeling. It then shows a scatterplot of the points projected on the first  2 principal components.
 ```
-cd ~/perceptual-similarities
+cd ~/similarities
 python3 -m analysis.perceptual_spaces_visualization
 ```
 
@@ -201,11 +205,11 @@ python3 -m analysis.perceptual_spaces_visualization
 
 ### Reproducing Figures
 To reproduce figures from our accompanying manuscript, do the following:
-Run `describe_data` from the `perceptual-similarities` directory
+Run `describe_data` from the `similarities` directory
 
 Note that since only one subject's dataset is provided, the comparison heatmap (Figure 4) will not be made.
 ```
-$ cd ~/perceptual-similarities
+$ cd ~/similarities
 $ python3 -m analysis.describe_data
 ```
 
@@ -222,7 +226,7 @@ This will produce two charts (one after the other) that show data from Figures 3
 
 To produce Figure 6, run `perceptual_space_visualization` and enter the path to the npy file containing model-fitting results:
 ```
-$ cd ~/perceptual-similarities
+$ cd ~/similarities
 $ python3 -m analysis.perceptual_space_visualizations
 ```
 Enter the input parameters requested as follows, and press enter to create the figure.
