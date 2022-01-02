@@ -1,4 +1,4 @@
-name: venv_similarities
+name: venv_sim_3.8
 channels:
 - defaults
 dependencies:

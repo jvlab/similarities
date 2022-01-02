@@ -33,7 +33,10 @@ def read_model_likelihoods(subjects, path):
 
 if __name__ == '__main__':
     SUBJECTS = input("Subjects separated by spaces: ").split(' ')
-    PATH_TO_SUBJECT_LOG_LIKELIHOODS = input("Path to the directory containing model log-likelihood files: ")
+    PATH_TO_SUBJECT_LOG_LIKELIHOODS = input("Path to the directory containing model log-likelihood files "
+                                            "(e.g., ./sample-materials/subject-data/model-fitting/S7/log-likelihoods): ")
+    print(SUBJECTS)
+    print(PATH_TO_SUBJECT_LOG_LIKELIHOODS)
     all_data = read_model_likelihoods(SUBJECTS, PATH_TO_SUBJECT_LOG_LIKELIHOODS)
     excluded_models = ['best']
 
