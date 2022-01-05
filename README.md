@@ -4,35 +4,53 @@
 ### Downloading dependencies:
 
 #### Python3
-The project uses Python 3.7.4. If you have problems running it with newer versions, try running it with Python 3.7.
+The project uses Python 3.8. If you have problems running it with newer versions, try running it with Python 3.7.
 The following tutorial can help with installing Python: https://realpython.com/installing-python/
 
 #### PsychoPy3
 Install PsychoPy here: https://www.psychopy.org/download.html. 
-This project uses PsychoPy v2020.2.10. If there is an issue running the experiment, try with running it with v2020.2.10, which can be found here: https://github.com/psychopy/psychopy/releases.
+This project uses PsychoPy v2021.2. 
 
-## Installation
+## Installation and Set-up
 
 ```
 git clone https://github.com/jvlab/similarities.git
 ```
-Install required packages
+Install required packages in a virtual environment
+
+Create virtual env and download dependencies
 ```
 cd ~/similarities
-pip install -r requirements.txt 
+conda env create -f environment.yaml
 ```
+venv_sim_3.8 should be listed when you run
+```
+conda env list 
+```
+To enter the virtual environment, before running code
+```commandline
+conda activate venv_sim_3.8
+```
+To exit the virtual environment after running scripts
+```
+conda deactivate
+```
+
 Run scripts from the `similarities` directory as modules, e.g.,
 ```
-python3 -m analysis.script_name
+cd ~/similarities
+conda activate venv_sim_3.8
+python -m analysis.script_name
+...
+conda deactivate
 ```
 
 ## Development setup
- TODO (incomplete)
+ TODO (incomplete!)
 Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
 
 ```sh
-make install
-npm test
+nosetests test
 ```
 
 ## Usage
