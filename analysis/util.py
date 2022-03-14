@@ -7,14 +7,13 @@ import glob
 import numpy as np
 from itertools import combinations
 
-# Read in parameters from config file
-with open('./analysis/config.yaml', "r") as stream:
-    data = yaml.safe_load(stream)
-    STIMULUS_LIST_FILE = data['path_to_stimulus_list']
-
 
 def stimulus_names():
-    stimuli = open(STIMULUS_LIST_FILE).read().split('\n')
+    # Read in parameters from config file
+    with open('./analysis/config.yaml', "r") as stream:
+        data = yaml.safe_load(stream)
+        stimulus_list_file = data['path_to_stimulus_list']
+    stimuli = open(stimulus_list_file).read().split('\n')
     return stimuli
 
 
@@ -132,9 +131,9 @@ def read_in_params():
     # Read in parameters from config file
     with open('./analysis/config.yaml', "r") as stream:
         user_config = yaml.safe_load(stream)
-        sigma_compare = float(user_config['sigma'])
+        sigma_compare = float(user_config['sigmas'])
         total_noise = {'compare': sigma_compare, 'dist': 0}  # because downstream processing expects a key 'dist'
-        user_config['sigma'] = total_noise
+        user_config['sigmas'] = total_noise
     # Fix type of all inputs
     user_config['num_stimuli'] = int(user_config['num_stimuli'])
     user_config['overlap'] = int(user_config['overlap'])
@@ -144,6 +143,7 @@ def read_in_params():
     user_config['model_dimensions'] = [int(number) for number in list(user_config['model_dimensions'])]
     user_config['num_repeats'] = int(user_config['num_repeats'])
     user_config['epsilon'] = float(user_config['epsilon'])
+    user_config['curvature'] = float(user_config['curvature'])
     user_config['minimization'] = str(user_config['minimization'])
     user_config['tolerance'] = float(user_config['tolerance'])
     user_config['max_iterations'] = int(user_config['max_iterations'])

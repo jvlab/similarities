@@ -1,6 +1,6 @@
 """
 In this file, I write methods to calculate the log likelihood of a set of count data given by
-simulations of experiments.
+geometry of experiments.
 
 If we have data of the form N((i, j) > (k, l)) i.e. number of times (repeats of trials) pair (i, j)
 was judged to be more different from the pair (k, l), then we can calculate the log likelihood, LL
@@ -11,7 +11,7 @@ LL = sum_{over all i,j,k,l} {
 } + ln Kx
 where K is a combinatorial constant that counts the number of orders in which the responses could
 have been made.
-p is given by our model probability using erf.
+p is given by our geometry probability using erf.
 
 Note:
 If our sigma_point = 0 then the total noise is comprised of two Gaussian sources so erf is fine.
@@ -20,16 +20,16 @@ Gaussian distributions, which is not exactly Gaussian. So erf is merely an appro
 since it only accounts for Gaussian sources of noise.
 """
 import logging
-import yaml
 import numpy as np
-from scipy import special
+from numpy import sqrt, zeros, concatenate, log2
+from scipy.special import erf
 from scipy.spatial.distance import pdist, squareform
 
 logging.basicConfig(level=logging.INFO)
 LOG = logging.getLogger(__name__)
-with open('./analysis/config.yaml', "r") as stream:
-    data = yaml.safe_load(stream)
-    EPSILON = float(data['epsilon'])
+# with open('./analysis/config.yaml', "r") as stream:
+#     data = yaml.safe_load(stream)
+#     EPSILON = float(data['epsilon'])
 
 
 def params_to_points(x0, num_stimuli, n_dim):
@@ -41,7 +41,7 @@ def params_to_points(x0, num_stimuli, n_dim):
     :return: points is a 2D array containing point coordinates.
             size: num_stimuli x n_dim
     """
-    points = np.zeros((num_stimuli, n_dim))
+    points = zeros((num_stimuli, n_dim))
     pointer = 0
     for i in range(1, min(n_dim, num_stimuli)):
         points[i, 0: i] = x0[pointer: i + pointer]
@@ -73,55 +73,55 @@ def points_to_params(points):
     params = []
     for row_idx in range(d):
         values = points[row_idx, 0:row_idx]
-        for element in values:
-            params.append(element)
+        params += [element for element in values]
     params = params + list(points[d:, :].flatten())
     return params
 
 
-def calculate_ll(counts, probs, num_repeats):
+def calculate_ll(counts, probs, num_repeats, epsilon):
     reverse_counts = num_repeats - counts
     reverse_probs = 1 - probs
 
-    probs = np.concatenate((probs, reverse_probs))
-    counts = np.concatenate((counts, reverse_counts))
+    probs = concatenate((probs, reverse_probs))
+    counts = concatenate((counts, reverse_counts))
 
     model_bad = False
-    # check if model is bad, i.e. prob = 0 but count > 0
+    # check if geometry is bad, i.e. prob = 0 but count > 0
     prob_zero = probs == 0
     if (counts[prob_zero] > 0).any():
         model_bad = True
 
     # make sure there are no zero probabilities (avoid log(0) error)
-    probs[prob_zero] += EPSILON
-    log_likelihood = counts.dot(np.log2(probs))
+    probs[prob_zero] += epsilon
+    log_likelihood = counts.dot(log2(probs))
     return log_likelihood, model_bad
 
 
 def dist_model_ll_vectorized(pair_a, pair_b, judgment_counts, params, stimuli):
-    """ Get the likelihood using probabilities from erf model, i.e. the model
+    """ Get the likelihood using probabilities from erf geometry, i.e. the geometry
     that takes into account noise as Gaussian sources. """
-    # get model probabilities and join counts and model prob for each trial (N, p)
+    # get geometry probabilities and join counts and geometry prob for each trial (N, p)
     interstimulus_distances = squareform(pdist(stimuli))
-    probs = find_probabilities(interstimulus_distances, pair_a, pair_b, params['sigma'], params['no_noise'])
+    probs = find_probabilities(interstimulus_distances, pair_a, pair_b, params['noise_st_dev'], params['no_noise'])
     # calculate log-likelihood, is_bad flag
-    return calculate_ll(judgment_counts, probs, params['num_repeats'])
+    return calculate_ll(judgment_counts, probs, params['num_repeats'], params['epsilon'])
 
 
-def find_probabilities(distances, pair_a, pair_b, sigmas, no_noise=False):
+def find_probabilities(distances, pair_a, pair_b, noise_st_dev, no_noise=False):
     """
-    :param distances: a matrix of distances size (number of stimuli, number of stimuli)
-    :param pair_a: a 2D numpy array with a pair of stimulus indices in each row, denoting the first distance
-    :param pair_b: a 2D numpy array with a pair of stimulus indices in each row, denoting the second distance
-    :param sigmas: contains subfields compare and dist for two possible noise sources
-    :param no_noise: boolean, in case needed while calling function in isolation
+    @param distances: a matrix of distances size (number of stimuli, number of stimuli)
+    @param pair_a: a 2D numpy array with a pair of stimulus indices in each row, denoting the first distance
+    @param pair_b: a 2D numpy array with a pair of stimulus indices in each row, denoting the second distance
+    @param no_noise: boolean, in case needed while calling function in isolation
+    @param noise_st_dev: combined noise from compare and dist for two possible noise sources
     """
     difference = distances[pair_a[:, 0], pair_a[:, 1]] - distances[pair_b[:, 0], pair_b[:, 1]]
-    if (sigmas['compare'] + sigmas['dist'] == 0) or no_noise is True:
+    if noise_st_dev == 0 or no_noise is True:
+    # if (sigmas['compare'] + sigmas['dist'] == 0) or no_noise is True:
         probabilities = (difference < 0) * 0 + (difference > 0) * 1 + (difference == 0) * 0.5
     else:
-        total_st_dev = np.sqrt((sigmas['dist'] ** 2) + sigmas['compare'] ** 2)
-        probabilities = 0.5 * (1 + special.erf(difference / float(2 * total_st_dev)))
+        # total_st_dev = sqrt((sigmas['dist'] ** 2) + sigmas['compare'] ** 2)
+        probabilities = 0.5 * (1 + erf(difference / float(2 * noise_st_dev)))
     return probabilities
 
 
@@ -134,7 +134,7 @@ def random_choice_ll(judgments, params):
     for v in judgments.values():
         counts.append(v)
         probs.append(0.5)
-    return calculate_ll(np.array(counts), np.array(probs), params['num_repeats'])
+    return calculate_ll(np.array(counts), np.array(probs), params['num_repeats'], params['epsilon'])
 
 
 def best_model_ll(judgments, params):
@@ -146,7 +146,7 @@ def best_model_ll(judgments, params):
     for v in judgments.values():
         counts.append(v)
         probs.append(v / num_repeats)
-    return calculate_ll(np.array(counts), np.array(probs), num_repeats)
+    return calculate_ll(np.array(counts), np.array(probs), num_repeats, params['epsilon'])
 
 
 def cost_of_model_fit(stimulus_params, pair_a, pair_b, judgment_counts, params):
@@ -161,7 +161,9 @@ def cost_of_model_fit(stimulus_params, pair_a, pair_b, judgment_counts, params):
     """
     # get points from params
     points = params_to_points(stimulus_params, params['num_stimuli'], params['n_dim'])
-    # calculate likelihood using distance model and given points
+    # calculate likelihood using distance geometry and given points
     ll, is_bad = dist_model_ll_vectorized(pair_a, pair_b, judgment_counts, params, points)
-    LOG.debug('model is good: {}'.format(not is_bad))
+    LOG.debug('geometry is good: {}'.format(not is_bad))
+    if is_bad:
+        LOG.info("WARNING: This model is infeasible.")
     return -1 * ll

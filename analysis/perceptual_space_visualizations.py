@@ -50,7 +50,7 @@ def scatterplots_2d_annotated(subject_name, subject_exp_data, pc1=1, pc2=2):
 
 if __name__ == '__main__':
     PATH_TO_NPY_FILE = input("Path to npy file containing 5D coordinates "
-                             "(e.g., ./sample-materials/subject-data/model-fitting/S7/"
+                             "(e.g., ./sample-materials/subject-data/geometry-fitting/S7/"
                              "S7_word_anchored_points_sigma_0.18_dim_5.npy): ")
     NAME = input("Subject name or ID (e.g., S7): ")
     data = np.load(PATH_TO_NPY_FILE)
