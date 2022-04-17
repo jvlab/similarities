@@ -1,0 +1,10 @@
+,Domain,Subject,LL,Model
+0,texture_grayscale,MC,-0.4167267669512672,Average
+1,texture_grayscale,MC,-2.0642518308742104,n-1
+2,texture_grayscale,MC,-0.2906864642929795,Best
+3,texture_grayscale,SAW,-0.41969996282859573,Average
+4,texture_grayscale,SAW,-2.071356646496077,n-1
+5,texture_grayscale,SAW,-0.30636884696055033,Best
+6,texture_grayscale,SA,-0.5275100214590724,Average
+7,texture_grayscale,SA,-4.617897821383887,n-1
+8,texture_grayscale,SA,-0.41917723199610374,Best

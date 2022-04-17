@@ -1,0 +1,8 @@
+,Model,Log Likelihood,number of points,Experiment,Subject
+0,1D,-0.5745436594233736,37,word,S7
+1,2D,-0.457938202657185,37,word,S7
+2,3D,-0.4320416675555783,37,word,S7
+3,4D,-0.4199826812211542,37,word,S7
+4,5D,-0.4091356072360649,37,word,S7
+5,best,-0.2611738432002573,37,word,S7
+6,random,-1.0,37,word,S7

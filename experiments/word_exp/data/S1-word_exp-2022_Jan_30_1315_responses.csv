@@ -1,0 +1,5 @@
+﻿ref,stim1,stim2,stim3,stim4,stim5,stim6,stim7,stim8,clicks,clicked_stimuli,participant,session,date,expName,psychopyVersion,frameRate,
+elephant,shark,giraffe,ladybug,snake,dolphin,cow,cat,hog,"['stim6', 'stim2', 'stim8', 'stim7', 'stim5', 'stim1', 'stim4', 'stim3']","['cow', 'giraffe', 'hog', 'cat', 'dolphin', 'shark', 'snake', 'ladybug']",S1,1,2022_Jan_30_1315,word_exp,2020.1.0,None,
+sparrow,ant,butterfly,owl,frog,bat,snail,rat,bluebird,"['stim8', 'stim3', 'stim5', 'stim7', 'stim4', 'stim2', 'stim6', 'stim1']","['bluebird', 'owl', 'bat', 'rat', 'frog', 'butterfly', 'snail', 'ant']",S1,1,2022_Jan_30_1315,word_exp,2020.1.0,None,
+giraffe,sheep,butterfly,mouse,ladybug,eagle,monkey,bear,dog,"['stim6', 'stim7', 'stim8', 'stim1', 'stim3', 'stim5', 'stim4', 'stim2']","['monkey', 'bear', 'dog', 'sheep', 'mouse', 'eagle', 'ladybug', 'butterfly']",S1,1,2022_Jan_30_1315,word_exp,2020.1.0,None,
+bear,turtle,ladybug,cat,monkey,ant,giraffe,goldfish,owl,,,,,,,,,
