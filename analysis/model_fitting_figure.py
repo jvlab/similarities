@@ -49,9 +49,9 @@ if __name__ == '__main__':
                     col_order=COL_ORDER,
                     kind='point', linestyles="-",
                     alpha=0.5,
-                    # height=3,
+                    height=3,
                     # palette="viridis_r",
-                    order=['random', '1D', '2D', '2D-hyp', '3D', '4D', '5D', '6D', '7D'],
+                    order=['random', '1D', '2D', '3D', '4D', '5D'],
                     label='big', legend_out=True)
     # g.set(ylim=(-1, 0.15))
     g.set_xticklabels(rotation='45')

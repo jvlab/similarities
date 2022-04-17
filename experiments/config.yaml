@@ -1,4 +1,4 @@
-files: '../../sample-materials/sample-images'
+files: '/Users/suniyya/Dropbox/Research/Thesis_Work/Psychophysics_Aim1/similarities/experiments/image_exp/image_set'
 num_images_per_trial: 8
 display_radius: 250.8 # (in pixels), the size of the display in the image experiment
 image_size: 115

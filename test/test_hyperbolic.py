@@ -61,9 +61,36 @@ class CurvatureHyperbolic(unittest.TestCase):
                 total += 1
         self.assertLessEqual(diffs/total, 0.005)
 
+    def test_if_hyperbolic_distance_equals_euclidean_for_points_near_orgin(self):
+        random_euclidean = np.random.rand(2, 10)
+        random_euclidean = 0.02 * random_euclidean
+        center = np.mean(random_euclidean, 1)
+        center = center.reshape((2, 1)) * np.ones((1, 10))
+        random_euclidean = random_euclidean - center
+        X = squareform(pdist(random_euclidean.T))
+        lambda_val = [0.5, 1, 2]
+        for val in lambda_val:
+            Y = hyperbolic_distances(loid_map(random_euclidean, val), val)
+            ratios = []
+            for i in range(Y.shape[0]):
+                for j in range(i):
+                    ratios.append(Y[i, j]/X[i, j])
+            print(val)
+            self.assertAlmostEqual(np.mean(ratios), 1, delta=0.03)
+        fig = plt.figure()
+        ax = fig.add_subplot(projection='3d')
+        plt.plot(random_euclidean[0, :], random_euclidean[1, :], 'o')
+        for _i in [0.5, 1, 2, 3]:
+            Y = loid_map(random_euclidean, _i)
+            if Y is not None:
+                ax.scatter(Y[1, :], Y[2, :], Y[0, :])
+        ax.set_xlim(-2, 1)
+        ax.set_ylim(-2, 1)
+        # plt.show()
+
     def test_if_spherical_distance_equals_euclidean_for_points_near_orgin(self):
         random_euclidean = np.random.rand(2, 10)
-        random_euclidean = 0.01 * random_euclidean
+        random_euclidean = 0.02 * random_euclidean
         center = np.mean(random_euclidean, 1)
         center = center.reshape((2, 1)) * np.ones((1, 10))
         random_euclidean = random_euclidean - center
@@ -75,7 +102,7 @@ class CurvatureHyperbolic(unittest.TestCase):
             for i in range(Y.shape[0]):
                 for j in range(i):
                     ratios.append(Y[i, j]/X[i, j])
-            self.assertAlmostEqual(np.mean(ratios), 1, delta=0.1)
+            self.assertAlmostEqual(np.mean(ratios), 1, delta=0.03)
         fig = plt.figure()
         ax = fig.add_subplot(projection='3d')
         plt.plot(random_euclidean[0, :], random_euclidean[1, :], 'o')
@@ -85,7 +112,7 @@ class CurvatureHyperbolic(unittest.TestCase):
                 ax.scatter(Y[1, :], Y[2, :], Y[0, :])
         ax.set_xlim(-2, 1)
         ax.set_ylim(-2, 1)
-        plt.show()
+        # plt.show()
 
     def test_inner_product_is_minus_1_for_points_on_hyperboloid(self):
         points2D = np.random.rand(10, 10)

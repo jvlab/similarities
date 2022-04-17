@@ -17,12 +17,8 @@ LOG = logging.getLogger(__name__)
 
 # take processed experiment responses (in json format) from the appropriate folder
 
-SHOW_MDS = False
-CONFIG, STIMULI, NAMES_TO_ID, ID_TO_NAME = read_in_params()
-ORIGINAL_CURVATURE = CONFIG['curvature']
 
-
-def decompose_similarity_judgments(filepath):
+def decompose_similarity_judgments(filepath, names_to_id):
     with open(filepath) as file:
         ranking_responses_by_trial = json.load(file)
 
@@ -36,7 +32,7 @@ def decompose_similarity_judgments(filepath):
             pairs = key.split('<')
             stim1, stim2 = pairs[1].split(',')
             stim3, stim4 = pairs[0].split(',')
-            new_key = ((NAMES_TO_ID[stim1], NAMES_TO_ID[stim2]), (NAMES_TO_ID[stim3], NAMES_TO_ID[stim4]))
+            new_key = ((names_to_id[stim1], names_to_id[stim2]), (names_to_id[stim3], names_to_id[stim4]))
             if new_key not in pairwise_comparison_responses_by_trial:
                 pairwise_comparison_responses_by_trial[new_key] = count
             else:
@@ -48,6 +44,10 @@ def decompose_similarity_judgments(filepath):
 
 
 if __name__ == '__main__':
+    SHOW_MDS = False
+    CONFIG, STIMULI, NAMES_TO_ID, ID_TO_NAME = read_in_params()
+    ORIGINAL_CURVATURE = CONFIG['curvature']
+
     # enter path to subject data (json file)
     FILEPATH = input("Path to json file containing subject's preprocessed data"
                      " (e.g., ./sample-materials/subject-data/preprocessed/S7_sample_word_exp.json: ")
@@ -75,11 +75,6 @@ if __name__ == '__main__':
         # get MDS starting coordinates
         D = mds.format_distances(mds.heuristic_distances(pairwise_comparison_responses_by_trial, 5))
         coordinates2d, stress = smacof(D, n_components=2, metric=True, eps=1e-9)
-        # if SHOW_MDS:
-        #     plt.plot(coordinates2d[:, 0], coordinates2d[:, 1], '.')
-        #     for i, txt in enumerate(range(37)):
-        #         plt.annotate(ID_TO_NAME[txt], (coordinates2d[i, 0], coordinates2d[i, 1]))
-        #     plt.show()
 
         # only consider a subset of trials
         if CONFIG['max_trials'] < len(pairwise_comparison_responses_by_trial):
